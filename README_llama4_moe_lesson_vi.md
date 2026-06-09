@@ -1,14 +1,14 @@
-# Mini LLaMA 4 MoE — code ghi nhớ bài học
+# Mini LLaMA 4 MoE — notebook ghi nhớ bài học
 
-Repo bổ sung file `llama4_moe_lesson_vi.py` để bạn có một bản code ngắn, dễ đọc và có thể đưa lên GitHub nhằm ôn lại bài học **Implementing LLaMA 4 from Scratch**.
+Repo bổ sung notebook `llama4_moe_lesson_vi.ipynb` để bạn có thể mở trực tiếp trên Jupyter hoặc Google Colab và ôn lại bài học **Implementing LLaMA 4 from Scratch**.
 
 ## Notebook/bài học nói về gì?
 
-Bài học giải thích cách xây dựng một **decoder-only Transformer kiểu LLaMA 4 thu nhỏ** với trọng tâm là **Mixture-of-Experts (MoE)**. Thay vì mọi token đi qua cùng một feed-forward network, mỗi token được một router chọn `top_k` expert phù hợp để xử lý.
+Notebook giải thích cách xây dựng một **decoder-only Transformer kiểu LLaMA 4 thu nhỏ** với trọng tâm là **Mixture-of-Experts (MoE)**. Thay vì mọi token đi qua cùng một feed-forward network, mỗi token được một router chọn `top_k` expert phù hợp để xử lý.
 
-## Mục đích của code
+## Mục đích của notebook
 
-Code không nhằm tái tạo LLaMA 4 thật. Mục đích là giúp ghi nhớ các ý chính:
+Notebook không nhằm tái tạo LLaMA 4 thật. Mục đích là giúp ghi nhớ các ý chính:
 
 - `CharTokenizer`: biến từng ký tự thành token ID để đơn giản hóa tokenizer.
 - `RMSNorm`: normalization kiểu LLaMA, nhẹ hơn LayerNorm vì không trừ mean.
@@ -17,24 +17,17 @@ Code không nhằm tái tạo LLaMA 4 thật. Mục đích là giúp ghi nhớ c
 - `MoEFeedForward`: router chọn `top_k` expert cho từng token và cộng thêm shared expert.
 - `MiniLlama4MoE`: ghép embedding, Transformer blocks, final norm và language-model head.
 
-## Cách chạy
+## Cách chạy trên Colab
 
-Cài PyTorch trước, ví dụ:
+1. Upload `llama4_moe_lesson_vi.ipynb` lên Google Drive hoặc GitHub.
+2. Mở notebook bằng Google Colab.
+3. Chọn **Runtime → Change runtime type → GPU** nếu muốn chạy nhanh hơn.
+4. Chạy từng cell từ trên xuống dưới.
 
-```bash
-python -m pip install torch
-```
+Google Colab thường đã có PyTorch. Nếu môi trường chưa có PyTorch, notebook có sẵn dòng cài đặt để bạn bỏ comment:
 
-Train nhanh vài bước trên CPU:
-
-```bash
-python llama4_moe_lesson_vi.py --steps 20 --batch-size 8 --generate 80 --device cpu
-```
-
-Nếu có GPU/CUDA, có thể bỏ `--device cpu`:
-
-```bash
-python llama4_moe_lesson_vi.py --steps 200 --batch-size 32 --generate 120
+```python
+# !pip install torch
 ```
 
 ## Output kỳ vọng
